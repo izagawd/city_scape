@@ -42,7 +42,9 @@ void MyWorld::regenerateWorld() {
 
 void MyWorld::update(float deltaTime) {
     World::update(deltaTime);
-
+    if(this->isKeyJustDown('r')) {
+        regenerateWorld();
+    }
 }
 
 void MyWorld::init() {

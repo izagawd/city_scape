@@ -68,13 +68,7 @@ include_directories(
     thirdparty/assimp/include 
     ${OPENGL_INCLUDE_DIRS})
 
-file(GLOB_RECURSE SAMPLEFW_SOURCE_FILES 
-	${CMAKE_SOURCE_DIR}/samplefw/*.c
-    ${CMAKE_SOURCE_DIR}/samplefw/*.cpp)
 
-file(GLOB_RECURSE SAMPLEFW_HEADER_FILES 
-	${CMAKE_SOURCE_DIR}/samplefw/*.h
-    ${CMAKE_SOURCE_DIR}/samplefw/*.hpp)
 
 file(GLOB_RECURSE WOLF_SOURCE_FILES 
 	${CMAKE_SOURCE_DIR}/wolf/*.c

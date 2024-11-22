@@ -21,7 +21,7 @@ public:
     std::vector<BuildingCubeMesh*> possibleBuildingMeshes;
     MeshGameNode* ground;
     void regenerateWorld();
-    void update(float deltaTime);
+    void update(float deltaTime) override;
 
 
 
