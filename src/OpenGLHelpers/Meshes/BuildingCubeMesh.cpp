@@ -58,10 +58,11 @@ void BuildingCubeMesh::setMeshData(std::array<unsigned char, 36> &indices, std::
     triangleVertices[18] = Vertex3D(1, 2, -1);  // Top-right
     triangleVertices[19] = Vertex3D(-1, 2, -1); // Top-left
 
+    //setting all to 0 so the top of a building will not have any windows texture 
     textCoords[16] = {0.0f, 0.0f}; // Bottom-left
-    textCoords[17] = {1.0f, 0.0f}; // Bottom-right
-    textCoords[18] = {1.0f, 1.0f}; // Top-right
-    textCoords[19] = {0.0f, 1.0f}; // Top-left
+    textCoords[17] = {0.0f, 0.0f}; // Bottom-right
+    textCoords[18] = {0.0f, 0.0f}; // Top-right
+    textCoords[19] = {0.0f, 0.0f}; // Top-left
 
     // Bottom face (Vertices 20-23)
     triangleVertices[20] = Vertex3D(-1, 0, -1); // Bottom-left

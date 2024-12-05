@@ -25,7 +25,9 @@ public:
 
 
 
+    // mmaterial for the ground used
     GameMaterial* groundMaterial;
+    // mesh for the ground used
     PlaneMesh* planeMesh;
     std::vector<MeshGameNode*> buildings;
     void init() override;
