@@ -11,6 +11,7 @@ void MyWorld::regenerateWorld() {
         i->destroy();
         delete i;
     }
+
     buildings.clear();
 
 
@@ -29,7 +30,7 @@ void MyWorld::regenerateWorld() {
                 building->localTransform.translation = glm::vec3(i * building_gap,groundOffset,
 
                 j * building_gap) + locationOffset;
-                building->localTransform.scale = glm::vec3(6 + (rand() % 3),15 + (rand() % 15), 6 + (rand() % 3));
+                building->localTransform.scale = glm::vec3(6 + (rand() % 6),15 + (rand() % 15), 6 + (rand() % 6));
                 buildings.push_back(building);
             }
         }
