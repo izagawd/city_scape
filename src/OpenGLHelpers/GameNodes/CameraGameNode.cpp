@@ -8,6 +8,7 @@ void CameraGameNode::update(float dt) {
     SceneGameNode::update(dt);
 
 
+    //logic for camera movement
     auto mouseMovement = getWorld()->getMousePos() - lastMousePos;
     lastMousePos = getWorld()->getMousePos();
 
@@ -40,6 +41,7 @@ void CameraGameNode::update(float dt) {
     if (getWorld()->isKeyDown('c')) {
         this->localTransform.translation.y -= cameraSpeed * dt;
     }
+
 }
 
 CameraGameNode::CameraGameNode() {

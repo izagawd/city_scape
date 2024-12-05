@@ -18,13 +18,8 @@ class MeshGameNode : public SceneGameNode {
     GLuint vertexArrayId = 0;
 
 public:
+    ~MeshGameNode() override;
 
-
-    virtual ~MeshGameNode() {
-        if(vertexArrayId != 0) {
-            glDeleteVertexArrays(1, &vertexArrayId);
-        }
-    }
     void render(int width, int height, const glm::mat4 &viewMatrix, const glm::mat4 &projectionMatrix) override;
 
 
@@ -43,12 +38,7 @@ public:
      */
     void setMesh(MeshBase *mesh);
 
-    virtual GLuint getVertexArrayID() {
-        if(vertexArrayId == 0) {
-            glGenVertexArrays(1,&vertexArrayId);
-        }
-        return vertexArrayId;
-    }
+    virtual GLuint getVertexArrayID();
 
     /**
      * Helps connecting attributes to vertex array

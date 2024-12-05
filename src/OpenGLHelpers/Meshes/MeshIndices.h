@@ -20,7 +20,7 @@ class MeshIndices : public MeshBase {
     virtual void setMeshData(std::array<TIndicesType, TNumOfTriangles * 3>& indices,
         std::array<Vertex3D, TNumOfVertices>& triangleVertices, std::array<TextCoord, TNumOfVertices>& textCoords) = 0;
 public:
-    ~MeshIndices() {
+    ~MeshIndices() override{
         if(indicesBufferId != 0) {
             glDeleteBuffers(1, &indicesBufferId);
         }

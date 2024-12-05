@@ -11,6 +11,12 @@
 #include "../GameMaterial.h"
 #include "../Meshes/PlaneMesh.h"
 
+MeshGameNode::~MeshGameNode() {
+    if(vertexArrayId != 0) {
+        glDeleteVertexArrays(1, &vertexArrayId);
+    }
+}
+
 void MeshGameNode::render(int width, int height, const glm::mat4 &viewMatrix, const glm::mat4 &projectionMatrix) {
 
     auto theMesh = getMesh();
@@ -54,6 +60,13 @@ void MeshGameNode::setMesh(MeshBase *mesh) {
     if(this->mesh == mesh) return;
     this->mesh = mesh;
     loadMesh();
+}
+
+GLuint MeshGameNode::getVertexArrayID() {
+    if(vertexArrayId == 0) {
+        glGenVertexArrays(1,&vertexArrayId);
+    }
+    return vertexArrayId;
 }
 
 void MeshGameNode::loadMesh() {
