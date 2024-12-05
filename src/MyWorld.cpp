@@ -7,6 +7,8 @@
 void MyWorld::regenerateWorld() {
     const int building_square_length  = 10;
     const int groundOffset = -30;
+
+    // removing previous buildings
     for(auto i : buildings) {
         i->destroy();
         delete i;
@@ -17,6 +19,8 @@ void MyWorld::regenerateWorld() {
 
 
     const auto building_square_gap = -325;
+
+    // generating new buildingsz
     for(auto locationOffset : {glm::vec3(0,0,0),
         glm::vec3(building_square_gap,0,0),
     glm::vec3(0,0,building_square_gap),
@@ -50,6 +54,8 @@ void MyWorld::update(float deltaTime) {
 
 void MyWorld::init() {
     World::init();
+
+    // creating the textures and mesh
     auto generalShader = new Shader("data/normal_texture_vertex_shader.vsh",
                               "data/normal_texture_pixel_shader.fsh");
     groundMaterial =    new GameMaterial(wolf::TextureManager::CreateTexture("data/ground_texture.png"),
