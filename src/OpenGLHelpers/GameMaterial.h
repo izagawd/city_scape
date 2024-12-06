@@ -27,10 +27,12 @@ private:
     Shader* shader;
 
 
+
+
      glm::vec2 textureMultiplier = glm::vec2(1,1);
     public:
     /**
-     *
+     *This is essentially the scale of the texture.
      * @return the current texture multiplier
      */
     glm::vec2 getTextureMultiplier() const{
@@ -39,12 +41,11 @@ private:
 
     /**
      *
-     * sets the texture scale
-     * NOTE: if texture scale is enabled, the texture scale will have a fixed size, no matter the scale of the
+     * sets the texture multiplier
      * object
      */
-    void setTextureMultiplier(glm::vec2 textureScale){
-        this->textureMultiplier = textureScale;
+    void setTextureMultiplier(glm::vec2 textureMultiplier){
+        this->textureMultiplier = textureMultiplier;
 
     }
 
