@@ -12,6 +12,7 @@ void GameMaterial::bind() {
 
     auto program = shader->getProgramId();
 
+    // caching the last program to avoid redundant program binding
     if(lastProgram != program) {
         glUseProgram(program);
         lastProgram = program;
