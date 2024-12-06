@@ -61,6 +61,7 @@ void CameraGameNode::update(float dt) {
     if (getWorld()->isKeyDown('c')) {
         this->localTransform.translation.y -= cameraSpeed * dt;
     }
+
     auto buildings = dynamic_cast<MyWorld*>(getWorld())->buildings;
     for(auto i : buildings) {
         if(isPointInsideBuilding(localTransform.translation,i)) {
