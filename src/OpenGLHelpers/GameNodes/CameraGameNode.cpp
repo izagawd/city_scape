@@ -63,9 +63,26 @@ void CameraGameNode::update(float dt) {
     }
 
     auto buildings = dynamic_cast<MyWorld*>(getWorld())->buildings;
+    auto& za_translation = localTransform.translation;
+    // handling collision
     for(auto i : buildings) {
         if(isPointInsideBuilding(localTransform.translation,i)) {
-            this->localTransform.translation = previous_translation;
+
+            // adding sliding collision...    
+            if (!isPointInsideBuilding(glm::vec3(za_translation.x, previous_translation.y, za_translation.z), i)) {
+                za_translation = glm::vec3(za_translation.x, previous_translation.y, za_translation.z);
+            } 
+
+            else if (!isPointInsideBuilding(glm::vec3(previous_translation.x, za_translation.y, za_translation.z), i)) {
+                za_translation = glm::vec3(previous_translation.x, za_translation.y, za_translation.z);
+            }
+            else if (!isPointInsideBuilding(glm::vec3(za_translation.x, za_translation.y, previous_translation.z), i)) {
+                za_translation = glm::vec3(za_translation.x, za_translation.y, previous_translation.z);
+            }
+
+            else {
+                this->localTransform.translation = previous_translation;
+            }
         }
     }
 }
