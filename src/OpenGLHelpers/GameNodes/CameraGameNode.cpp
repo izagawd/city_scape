@@ -61,10 +61,10 @@ void CameraGameNode::update(float dt) {
     if (getWorld()->isKeyDown('c')) {
         this->localTransform.translation.y -= cameraSpeed * dt;
     }
-
-    auto buildings = dynamic_cast<MyWorld*>(getWorld())->buildings;
+    auto worldToWorkWith = dynamic_cast<MyWorld*>(getWorld());
+    auto buildings = worldToWorkWith->buildings;
     auto& za_translation = localTransform.translation;
-    // handling collision
+    // Handling collision with buildings
     for(auto i : buildings) {
         if(isPointInsideBuilding(localTransform.translation,i)) {
 
@@ -84,6 +84,11 @@ void CameraGameNode::update(float dt) {
                 this->localTransform.translation = previous_translation;
             }
         }
+    }
+
+    // Handling ground collision...
+    if(localTransform.translation.y < worldToWorkWith->ground->localTransform.translation.y) {
+        localTransform.translation.y = worldToWorkWith->ground->localTransform.translation.y;
     }
 }
 
