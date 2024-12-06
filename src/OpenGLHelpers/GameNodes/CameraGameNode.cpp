@@ -16,12 +16,12 @@ bool isPointInsideCube(glm::vec3 point,
 
 bool isPointInsideBuilding(glm::vec3 point, MeshGameNode* building) {
    return  isPointInsideCube(point,
-            building->localTransform.translation.x - building->localTransform.scale.x,
-            building->localTransform.translation.y,
-            building->localTransform.translation.z - building->localTransform.scale.z,
-            building->localTransform.translation.x + building->localTransform.scale.x,
-            building->localTransform.translation.y + (building->localTransform.scale.y * 2),
-            building->localTransform.translation.z + building->localTransform.scale.z  );
+            building->transform.translation.x - building->transform.scale.x,
+            building->transform.translation.y,
+            building->transform.translation.z - building->transform.scale.z,
+            building->transform.translation.x + building->transform.scale.x,
+            building->transform.translation.y + (building->transform.scale.y * 2),
+            building->transform.translation.z + building->transform.scale.z  );
 }
 void CameraGameNode::update(float dt) {
     SceneGameNode::update(dt);
@@ -32,41 +32,41 @@ void CameraGameNode::update(float dt) {
     lastMousePos = getWorld()->getMousePos();
 
 
-    auto previous_translation = this->localTransform.translation;
+    auto previous_translation = this->transform.translation;
     if(getWorld()->isMMBDown()) {
-        this->localTransform.rotation.y += mouseMovement.x * mouseSensitivity * dt;
-        this->localTransform.rotation.x -= mouseMovement.y * mouseSensitivity * dt;
+        this->transform.rotation.y += mouseMovement.x * mouseSensitivity * dt;
+        this->transform.rotation.x -= mouseMovement.y * mouseSensitivity * dt;
     }
 
     if (getWorld()->isKeyDown('w')) {
-        this->localTransform.translation +=
-            this->localTransform.rotation.getForward() * cameraSpeed * dt;
+        this->transform.translation +=
+            this->transform.rotation.getForward() * cameraSpeed * dt;
     }
     if (getWorld()->isKeyDown('s')) {
-        this->localTransform.translation -=
-            this->localTransform.rotation.getForward() * cameraSpeed * dt;
+        this->transform.translation -=
+            this->transform.rotation.getForward() * cameraSpeed * dt;
     }
     if (getWorld()->isKeyDown('a')) {
-        this->localTransform.translation +=
-            this->localTransform.rotation.getRight() * cameraSpeed * dt;
+        this->transform.translation +=
+            this->transform.rotation.getRight() * cameraSpeed * dt;
     }
     if (getWorld()->isKeyDown('d')) {
-        this->localTransform.translation -=
-            this->localTransform.rotation.getRight() * cameraSpeed * dt;
+        this->transform.translation -=
+            this->transform.rotation.getRight() * cameraSpeed * dt;
     }
     // Up/Down movement
     if (getWorld()->isKeyDown(' ')) {
-        this->localTransform.translation.y += cameraSpeed * dt;
+        this->transform.translation.y += cameraSpeed * dt;
     }
     if (getWorld()->isKeyDown('c')) {
-        this->localTransform.translation.y -= cameraSpeed * dt;
+        this->transform.translation.y -= cameraSpeed * dt;
     }
     auto worldToWorkWith = dynamic_cast<MyWorld*>(getWorld());
     auto buildings = worldToWorkWith->buildings;
-    auto& za_translation = localTransform.translation;
+    auto& za_translation = transform.translation;
     // Handling collision with buildings
     for(auto i : buildings) {
-        if(isPointInsideBuilding(localTransform.translation,i)) {
+        if(isPointInsideBuilding(transform.translation,i)) {
 
             // adding sliding collision...    
             if (!isPointInsideBuilding(glm::vec3(za_translation.x, previous_translation.y, za_translation.z), i)) {
@@ -81,19 +81,19 @@ void CameraGameNode::update(float dt) {
             }
 
             else {
-                this->localTransform.translation = previous_translation;
+                this->transform.translation = previous_translation;
             }
         }
     }
 
     // Handling ground collision...
-    if(localTransform.translation.y < worldToWorkWith->ground->localTransform.translation.y) {
-        localTransform.translation.y = worldToWorkWith->ground->localTransform.translation.y;
+    if(transform.translation.y < worldToWorkWith->ground->transform.translation.y) {
+        transform.translation.y = worldToWorkWith->ground->transform.translation.y;
     }
 }
 
 CameraGameNode::CameraGameNode() {
-    localTransform.translation.z = -6.0f;
+    transform.translation.z = -6.0f;
 }
 
 void CameraGameNode::init() {

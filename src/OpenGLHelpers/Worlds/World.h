@@ -69,7 +69,8 @@ TGameNode* World::spawnGameNode() {
     static_assert(std::is_base_of<GameNode, TGameNode>::value || std::is_same<GameNode, TGameNode>::value,
         "template must be of type game node or subclass of it");
     auto gameNode = new TGameNode();
-    addGameNodeAndItsChildren(gameNode);
+    gameNode->world = this;
+    gameNodes.insert(gameNode);
     gameNode->init();
     return gameNode;
 

@@ -7,9 +7,6 @@
 #include "../GameNodes/CameraGameNode.h"
 void World::destroy(GameNode *gameNode) {
     gameNodes.erase(gameNode);
-    for(auto& i : gameNode->getChildren()) {
-        destroy(i);
-    }
 }
 
 CameraGameNode* World::getCamera() const {
@@ -37,8 +34,8 @@ void World::render(int width, int height) {
 
         glm::mat4 mProj = glm::perspective(glm::radians(camera->fieldOfView), (float)width / (float)height,
     camera->nearPlane, camera->farPlane);
-        auto camWorldTrans = camera->getWorldTranslation();
-        auto camWorldRot = camera->getWorldRotation();
+        auto& camWorldTrans = camera->transform.translation;
+        auto& camWorldRot = camera->transform.rotation;
         auto camWorldForward = camWorldRot.getForward();
         glm::mat4 mView = glm::lookAt(camWorldTrans,
                 camWorldForward + camWorldTrans, camWorldRot.getUp() );
@@ -62,10 +59,3 @@ World::World( const std::string& name): App(name) {
 
 }
 
-void World::addGameNodeAndItsChildren(GameNode* gameNode) {
-    gameNode->world = this;
-    gameNodes.insert(gameNode);
-    for(const auto& i : gameNode->getChildren()) {
-        addGameNodeAndItsChildren(i);
-    }
-}

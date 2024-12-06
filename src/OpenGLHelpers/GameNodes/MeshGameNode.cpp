@@ -27,7 +27,7 @@ void MeshGameNode::render(int width, int height, const glm::mat4 &viewMatrix, co
 
             mat->bind();
             glBindVertexArray(getVertexArrayID());
-            glUniformMatrix4fv(glGetUniformLocation(programId,"world"), 1, GL_FALSE, glm::value_ptr(getWorldMatrix()));
+            glUniformMatrix4fv(glGetUniformLocation(programId,"world"), 1, GL_FALSE, glm::value_ptr(getMatrix()));
             glUniformMatrix4fv(glGetUniformLocation(programId,"view"), 1, GL_FALSE, glm::value_ptr(viewMatrix));
             glUniformMatrix4fv(glGetUniformLocation(programId,"projection"), 1, GL_FALSE,
                 glm::value_ptr(projectionMatrix));

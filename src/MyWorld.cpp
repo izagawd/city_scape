@@ -31,18 +31,18 @@ void MyWorld::regenerateWorld() {
                 auto randomIndex = rand() % possibleBuildingMeshes.size();
                 building->setMesh(possibleBuildingMeshes[randomIndex]);
                 const auto building_gap = 30;
-                building->localTransform.translation = glm::vec3(i * building_gap,groundOffset,
+                building->transform.translation = glm::vec3(i * building_gap,groundOffset,
 
                 j * building_gap) + locationOffset;
-                building->localTransform.scale = glm::vec3(6 + (rand() % 6),15 + (rand() % 15), 6 + (rand() % 6));
+                building->transform.scale = glm::vec3(6 + (rand() % 6),15 + (rand() % 15), 6 + (rand() % 6));
                 buildings.push_back(building);
             }
         }
     }
     ground = spawnGameNode<MeshGameNode>();
     ground->setMesh(planeMesh);
-    ground->localTransform.scale = glm::vec3(350,1,350);
-    ground->localTransform.translation.y = groundOffset;
+    ground->transform.scale = glm::vec3(350,1,350);
+    ground->transform.translation.y = groundOffset;
 }
 
 
@@ -89,5 +89,5 @@ void MyWorld::init() {
     buildingCubeMaterialTwo->setTextureMultiplier(glm::vec2(1,3));
     possibleBuildingMeshes.push_back(buildingCubeMeshTwo);
     regenerateWorld();
-    getCamera()->localTransform.translation.z -= 10;
+    getCamera()->transform.translation.z -= 10;
 }

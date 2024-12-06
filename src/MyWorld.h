@@ -22,7 +22,6 @@ public:
     void update(float deltaTime) override;
 
 
-
     // mmaterial for the ground used
     GameMaterial* groundMaterial;
     // mesh for the ground used

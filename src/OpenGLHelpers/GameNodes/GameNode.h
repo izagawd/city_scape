@@ -32,16 +32,11 @@ public:
 class GameNode {
 
 
-    GameNode* parent = nullptr;
-    std::set<GameNode*> children;
 
 
     friend class World;
     World* world;
     public:
-    void setParent(GameNode* inParent);
-
-    const std::set<GameNode*>& getChildren() const;
 protected:
     virtual void init();
     virtual void render(int width, int height, const glm::mat4& viewMatrix, const glm::mat4& projectionMatrix);
@@ -50,9 +45,6 @@ protected:
 public:
     virtual ~GameNode();
     void destroy();
-    GameNode* getParent() const {
-        return parent;
-    }
 
 
     World* getWorld() const;

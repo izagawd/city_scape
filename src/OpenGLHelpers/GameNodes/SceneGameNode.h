@@ -11,12 +11,8 @@ class SceneGameNode : public GameNode {
 
 public:
 
-    Rotation getWorldRotation() const;
 
-    glm::vec3 getWorldTranslation() const;
+    Transform transform = Transform();
 
-    Transform localTransform = Transform();
-    glm::vec3 getWorldScale() const;
-
-    glm::mat4 getWorldMatrix() const;
+    glm::mat4 getMatrix() const;
 };
