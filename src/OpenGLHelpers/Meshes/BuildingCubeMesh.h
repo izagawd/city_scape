@@ -8,7 +8,7 @@
 
 
 /**
- * Mesh where
+ * Mesh for each building
  */
 class BuildingCubeMesh : public MeshIndices<12,24,GLubyte>{
 

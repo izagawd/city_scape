@@ -1,9 +1,7 @@
 //
 // Created by theiz on 11/6/2024.
 //
-
-#ifndef MYWORLD_H
-#define MYWORLD_H
+#pragma once
 #include "OpenGLHelpers/GameMaterial.h"
 
 #include "OpenGLHelpers/GameNodes/CameraGameNode.h"
@@ -32,7 +30,3 @@ public:
     std::vector<MeshGameNode*> buildings;
     void init() override;
 };
-
-
-
-#endif //MYWORLD_H

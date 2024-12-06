@@ -4,6 +4,25 @@
 
 #include "CameraGameNode.h"
 
+#include "../../MyWorld.h"
+bool isPointInsideCube(glm::vec3 point,
+                       float min_x, float min_y, float min_z,
+                       float max_x, float max_y, float max_z) {
+    return (point.x >= min_x && point.x <= max_x) &&
+           (point.y >= min_y && point.y <= max_y) &&
+           (point.z >= min_z && point.z <= max_z);
+}
+
+
+bool isPointInsideBuilding(glm::vec3 point, MeshGameNode* building) {
+   return  isPointInsideCube(point,
+            building->localTransform.translation.x - building->localTransform.scale.x,
+            building->localTransform.translation.y,
+            building->localTransform.translation.z - building->localTransform.scale.z,
+            building->localTransform.translation.x + building->localTransform.scale.x,
+            building->localTransform.translation.y + (building->localTransform.scale.y * 2),
+            building->localTransform.translation.z + building->localTransform.scale.z  );
+}
 void CameraGameNode::update(float dt) {
     SceneGameNode::update(dt);
 
@@ -13,6 +32,7 @@ void CameraGameNode::update(float dt) {
     lastMousePos = getWorld()->getMousePos();
 
 
+    auto previous_translation = this->localTransform.translation;
     if(getWorld()->isMMBDown()) {
         this->localTransform.rotation.y += mouseMovement.x * mouseSensitivity * dt;
         this->localTransform.rotation.x -= mouseMovement.y * mouseSensitivity * dt;
@@ -41,7 +61,12 @@ void CameraGameNode::update(float dt) {
     if (getWorld()->isKeyDown('c')) {
         this->localTransform.translation.y -= cameraSpeed * dt;
     }
-
+    auto buildings = dynamic_cast<MyWorld*>(getWorld())->buildings;
+    for(auto i : buildings) {
+        if(isPointInsideBuilding(localTransform.translation,i)) {
+            this->localTransform.translation = previous_translation;
+        }
+    }
 }
 
 CameraGameNode::CameraGameNode() {

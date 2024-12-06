@@ -45,11 +45,15 @@ void MyWorld::regenerateWorld() {
     ground->localTransform.translation.y = groundOffset;
 }
 
+
 void MyWorld::update(float deltaTime) {
     World::update(deltaTime);
     if(this->isKeyJustDown('r')) {
         regenerateWorld();
     }
+    auto cam = getCamera();
+
+
 }
 
 void MyWorld::init() {

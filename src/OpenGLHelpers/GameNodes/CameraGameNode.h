@@ -9,6 +9,7 @@
 class CameraGameNode : public SceneGameNode{
 
 public:
+
     void update(float dt) override;
     CameraGameNode();
     void init() override;
