@@ -3,12 +3,17 @@
 
 #include "GL/glew.h"
 
+class PlaneMesh;
+class GameMaterial;
+class MeshGameNode;
+class BuildingCubeMesh;
 class CameraGameNode;
 class Game;
 class GameNode;
 #include "../../wolf/wolf.h"
 
 class World : public wolf::App {
+
 
     bool hasInit = false;
     /**
@@ -22,15 +27,31 @@ class World : public wolf::App {
 protected:
 
     void render() override;
-    virtual void render(int width, int height);
+    void render(int width, int height);
 
-    virtual void init();
-    virtual void update(float dt);
+    void init();
+    void update(float dt);
 
 
 public:
+    static wolf::Texture* buildingOne;
 
-    World(const std::string& name );
+    static wolf::Texture* buildingTwo;
+
+
+
+    std::vector<BuildingCubeMesh*> possibleBuildingMeshes;
+    MeshGameNode* ground;
+    void regenerateWorld();
+
+
+
+    // mmaterial for the ground used
+    GameMaterial* groundMaterial;
+    // mesh for the ground used
+    PlaneMesh* planeMesh;
+    std::vector<MeshGameNode*> buildings;
+    World();
 
     void destroy(GameNode* gameNode);
 

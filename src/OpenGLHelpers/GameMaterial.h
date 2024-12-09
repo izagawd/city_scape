@@ -37,6 +37,9 @@ private:
         return textureMultiplier;
     }
 
+    wolf::Texture* getTexture() const {
+        return texture;
+    }
     /**
      *
      * sets the texture multiplier

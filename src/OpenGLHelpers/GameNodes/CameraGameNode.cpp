@@ -4,7 +4,8 @@
 
 #include "CameraGameNode.h"
 
-#include "../../MyWorld.h"
+#include "MeshGameNode.h"
+#include "../Worlds/World.h"
 bool isPointInsideCube(glm::vec3 point,
                        float min_x, float min_y, float min_z,
                        float max_x, float max_y, float max_z) {
@@ -81,7 +82,7 @@ void CameraGameNode::update(float dt) {
     if (getWorld()->isKeyDown('c')) {
         this->transform.translation.y -= cameraSpeed * dt;
     }
-    auto worldToWorkWith = dynamic_cast<MyWorld*>(getWorld());
+    auto worldToWorkWith = getWorld();
     auto buildings = worldToWorkWith->buildings;
     auto& za_translation = transform.translation;
     // Handling collision with buildings
