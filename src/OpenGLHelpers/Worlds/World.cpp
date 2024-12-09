@@ -143,7 +143,7 @@ void World::update(float dt) {
 
 }
 
-World::World( ): App("My World") {
+World::World(): App("My World") {
 
 }
 
