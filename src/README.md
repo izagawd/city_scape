@@ -4,5 +4,5 @@ WASD to move<br>
 Space to go up<br>
 C to go down<br>
 I to invert Y-Axis<br>
-Tap the UP arrow key to increase camera speed<br>
-Tap the DOWN arrow key to decrease camera speed
+Tap the UP arrow key to increase movement speed<br>
+Tap the DOWN arrow key to decrease movement speed
