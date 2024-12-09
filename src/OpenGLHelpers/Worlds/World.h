@@ -30,7 +30,7 @@ protected:
 ;
 
     void init();
-    void update(float dt);
+    void update(float dt) override;
 
 
 public:
@@ -63,7 +63,6 @@ public:
 
 
 
-    GLuint getProgramId();
 
 
     /**
@@ -81,8 +80,7 @@ public:
      */
     template<class TGameNode>
     TGameNode* spawnGameNode();
-private:
-    void addGameNodeAndItsChildren(GameNode* gameNode);
+
 };
 
 template<class TGameNode>
