@@ -141,7 +141,6 @@ void World::update(float dt) {
         regenerateWorld();
     }
 
-    auto cam = getCamera();
 }
 
 World::World( ): App("My World") {
