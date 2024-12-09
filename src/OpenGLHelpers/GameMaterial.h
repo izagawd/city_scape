@@ -1,9 +1,7 @@
 //
 // Created by theiz on 11/16/2024.
 //
-
-#ifndef MATERIAL_H
-#define MATERIAL_H
+#pragma once
 #include <memory>
 
 
@@ -60,9 +58,5 @@ private:
     }
     void bind();
 
-    static void unbind() {
-        glBindTexture(GL_TEXTURE_2D, 0);
-    }
-};
 
-#endif //MATERIAL_H
+};

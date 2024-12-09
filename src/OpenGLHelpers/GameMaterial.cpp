@@ -6,7 +6,7 @@
 
 
 
-
+static GLuint lastBoundTexture = 0;
 static GLuint lastProgram = 0;
 void GameMaterial::bind() {
 
@@ -18,9 +18,14 @@ void GameMaterial::bind() {
         lastProgram = program;
     }
 
-    texture->Bind();
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT); // Repeat horizontally
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT); // Repeat vertically
+    auto textureId = texture->GetGLTexture();
+    if(textureId != lastBoundTexture) {
+        texture->Bind();
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT); // Repeat horizontally
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT); // Repeat vertically
+        lastBoundTexture = textureId;
+    }
+
 
 
 }

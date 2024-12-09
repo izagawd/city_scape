@@ -38,7 +38,6 @@ void MeshGameNode::render(int width, int height, const glm::mat4 &viewMatrix, co
             mat->getTextureMultiplier()
                          ));
             theMesh->draw();
-            GameMaterial::unbind();
         }
 
 
