@@ -101,9 +101,10 @@ void CameraGameNode::update(float dt) {
         }
     }
 
+    const auto groundOffset = 1;
     // Handling ground collision...
-    if(transform.translation.y - 1< worldToWorkWith->ground->transform.translation.y) {
-        transform.translation.y = worldToWorkWith->ground->transform.translation.y + 1;
+    if(transform.translation.y - groundOffset < worldToWorkWith->ground->transform.translation.y) {
+        transform.translation.y = worldToWorkWith->ground->transform.translation.y + groundOffset;
     }
 }
 
