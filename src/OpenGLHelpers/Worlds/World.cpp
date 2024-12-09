@@ -67,11 +67,8 @@ void World::init() {
 
 
 void World::render() {
-    render(m_width, m_height);
-}
-
-void World::render(int width, int height) {
-
+    const auto width = m_width;
+    const auto height = m_height;
     glClearColor(0.3f, 0.3f, 0.3f, 1.0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -88,8 +85,9 @@ camera->nearPlane, camera->farPlane);
         gameNode->render(width,height,mView,mProj);
     }
 
-
 }
+
+
 void World::regenerateWorld() {
     const int building_square_length  = 10;
     const int groundOffset = -30;

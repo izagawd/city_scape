@@ -27,7 +27,7 @@ class World : public wolf::App {
 protected:
 
     void render() override;
-    void render(int width, int height);
+;
 
     void init();
     void update(float dt);
