@@ -8,9 +8,14 @@
 bool isPointInsideCube(glm::vec3 point,
                        float min_x, float min_y, float min_z,
                        float max_x, float max_y, float max_z) {
-    return (point.x >= min_x && point.x <= max_x) &&
-           (point.y >= min_y && point.y <= max_y) &&
-           (point.z >= min_z && point.z <= max_z);
+
+
+    // sometimes camera can still see building, so this offset makes the cube collider a lil bigger to
+    // prevent that from happening
+    const auto collisionOffset = 1;
+    return (point.x + collisionOffset >= min_x && point.x  - collisionOffset<= max_x) &&
+           (point.y + collisionOffset>= min_y && point.y - collisionOffset <= max_y) &&
+           (point.z + collisionOffset >= min_z && point.z  - collisionOffset<= max_z);
 }
 
 
@@ -101,10 +106,10 @@ void CameraGameNode::update(float dt) {
         }
     }
 
-    const auto groundOffset = 1;
+    const auto groundCollisionOffset = 1;
     // Handling ground collision...
-    if(transform.translation.y - groundOffset < worldToWorkWith->ground->transform.translation.y) {
-        transform.translation.y = worldToWorkWith->ground->transform.translation.y + groundOffset;
+    if(transform.translation.y - groundCollisionOffset < worldToWorkWith->ground->transform.translation.y) {
+        transform.translation.y = worldToWorkWith->ground->transform.translation.y + groundCollisionOffset;
     }
 }
 
