@@ -25,6 +25,7 @@ struct Rotation : public glm::vec3{
         z = inVec.z;
         return *this;
     }
+
     Rotation() : glm::vec3() {}
     Rotation(glm::vec3 inVec) : glm::vec3(inVec) {}
     Rotation(float inX, float inY, float inZ) : glm::vec3(inX, inY, inZ) {}
