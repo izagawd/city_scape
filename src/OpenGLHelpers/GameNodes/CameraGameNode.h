@@ -10,10 +10,13 @@ class CameraGameNode : public SceneGameNode{
 
 public:
 
+
     void update(float dt) override;
     CameraGameNode();
     void init() override;
     glm::vec2 lastMousePos;
+
+    bool invertY = false;
     float mouseSensitivity = 5;
     float cameraSpeed = 10;
     GLfloat fieldOfView = 60.0f;

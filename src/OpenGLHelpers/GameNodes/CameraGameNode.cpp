@@ -26,9 +26,24 @@ bool isPointInsideBuilding(glm::vec3 point, MeshGameNode* building) {
 void CameraGameNode::update(float dt) {
     SceneGameNode::update(dt);
 
-
+    if(this->getWorld()->isKeyJustDown('i')){
+        invertY = !invertY;
+    }
+    if(this->getWorld()->isKeyJustDown(GLFW_KEY_UP)) {
+        this->cameraSpeed += 3;
+    }
+    if(this->getWorld()->isKeyJustDown(GLFW_KEY_DOWN)) {
+        this->cameraSpeed += -3;
+        if(this->cameraSpeed <= 0) {
+            this->cameraSpeed = 3;
+        }
+    }
     //logic for camera movement
     auto mouseMovement = getWorld()->getMousePos() - lastMousePos;
+    if(invertY){
+        mouseMovement.y *= -1;
+    }
+    mouseMovement.x *= -1;
     lastMousePos = getWorld()->getMousePos();
 
 
@@ -87,8 +102,8 @@ void CameraGameNode::update(float dt) {
     }
 
     // Handling ground collision...
-    if(transform.translation.y < worldToWorkWith->ground->transform.translation.y) {
-        transform.translation.y = worldToWorkWith->ground->transform.translation.y;
+    if(transform.translation.y - 1< worldToWorkWith->ground->transform.translation.y) {
+        transform.translation.y = worldToWorkWith->ground->transform.translation.y + 1;
     }
 }
 

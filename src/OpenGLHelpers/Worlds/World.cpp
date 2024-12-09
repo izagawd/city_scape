@@ -19,6 +19,8 @@ void World::init() {
 
     glEnable(GL_DEPTH_TEST);
     _setMouseScroll(glm::vec2(0, 0));
+
+    // spawns the camera for the world
     camera = spawnGameNode<CameraGameNode>();
 }
 

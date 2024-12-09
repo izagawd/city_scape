@@ -51,6 +51,7 @@ void MyWorld::update(float deltaTime) {
     if(this->isKeyJustDown('r')) {
         regenerateWorld();
     }
+
     auto cam = getCamera();
 
 
