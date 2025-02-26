@@ -1,3 +1,6 @@
+
+<h2>Summary</h2>
+A 3D city made with OpenGL
 <h2>Controls</h2>
 R to regenerate city<br>
 WASD to move<br>
